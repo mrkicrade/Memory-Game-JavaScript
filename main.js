@@ -3,7 +3,7 @@ let flippedCards = [];
 let counter = 0;
 let level = 2;
 let start = 2;
-let timer = 20;
+let time = 500;
 
 let text = "qwertyuiopasdfghjklzxcvbnm1234567890#$%^&*(){}=+[]".toUpperCase().split("");
 // console.log(text); // array od 50 elemenata
@@ -14,11 +14,8 @@ function startGame() {
     
     // moram prvo da izvucem dva elementa i da napravim array za igru od njih, pa onda 4...
     let gameIcons = text.slice(0, (level * start) / 2);
-    console.log(gameIcons);
-    
     
     let icons = gameIcons.concat(gameIcons);
-    // console.log(icons);
     
     // kreiranje container-a
     let container = document.createElement('div');
@@ -31,8 +28,43 @@ function startGame() {
     line.classList.add('line-' + level);
     timerDiv.appendChild(line);
 
+    switch (level) {
+        case 2:
+            time = 100;
+            break;
+        case 4:
+            time = 500;
+            break;
+        case 6:
+            time = 800;
+            break;
+        case 8:
+            time = 1000;
+            break;
+        case 10:
+            time = 1500;
+        default:
+            break;
+    }
+
     let height = 1;
-	let startTimer = setInterval(start1, 500);
+	let startTimer = setInterval(start1, time);
+
+    function start1() {
+        if (height >= 100) {
+            clearInterval(startTimer);
+            alert("Vreme je isteklo!!! Igra je zavrsena!!!");
+            alert('Pokrenite novu igru');
+            level = 2;
+            start = 2;
+            counter = 0;
+            clean();
+            startGame();
+        } else {
+            height++;
+            line.style.height = height + '%';
+        }
+    }
     
     createCards();
     
@@ -95,8 +127,7 @@ function startGame() {
                 level = level + 2;
                 counter = 0;
                 setTimeout(() => {
-                    container.remove();
-                    timerDiv.remove();
+                    clean();
                     clearInterval(startTimer);
                     alert('Uspešno ste završili igru. Prelazite na viši nivo.')
                     startGame();
@@ -112,15 +143,8 @@ function startGame() {
         }
     }
 
-    function start1() {
-			if (height >= 100) {
-				clearInterval(startTimer);
-				alert("Vreme je isteklo!!! Igra je zavrsena!!!");
-                alert('Pokrenite novu igru');
-                startGame();
-			} else {
-				height++;
-				line.style.height = height + '%';
-			}
-		}
+    function clean() {
+        container.remove();
+        timerDiv.remove();
+    }
 }
