@@ -36,7 +36,7 @@ body {
     flex-wrap: wrap;
 }
 
-.container-8 {
+.container-8, .container-10 {
     width: 800px;
     height: 800px;
     margin: 50px auto;
@@ -45,18 +45,27 @@ body {
     flex-wrap: wrap;
 }
 
-.container-10 {
+/* .container-10 {
     width: 1000px;
     height: 1000px;
     margin: 50px auto;
     box-shadow: 0 0 8px #ddd;
     display: flex;
     flex-wrap: wrap;
-}
+} */
 
 .card-2, .card-4, .card-6, .card-8 {
     width: 100px;
     height: 100px;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.card-10 {
+    width: 80px;
+    height: 80px;
     position: relative;
     border: 1px solid #ddd;
     border-radius: 16px;
@@ -74,6 +83,12 @@ body {
     align-items: center;
     font-size: 68px;
     color: aliceblue;
+}
+
+.back-10, .front-10 {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
 }
 
 .back-2, .back-4, .back-6, .back-8, .back-10 {
@@ -127,11 +142,11 @@ body {
 
 .timer-2, .timer-4, .timer-6, .timer-8, .timer-10 {
 	width: 50px;
-	height: 100px;
+	/* height: 100px; */
 	border: 1px solid #000;
 	background-color: blueviolet;
 	float: left;
-	margin: 70px auto;
+	margin: 50px auto;
 }
 
 .timer-2 {
@@ -158,5 +173,5 @@ body {
 }
 
 .timer-10 {
-	height: 1000px;
+	height: 800px;
 }
