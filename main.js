@@ -6,13 +6,11 @@ let start = 2;
 let time = 500;
 
 let text = "qwertyuiopasdfghjklzxcvbnm1234567890#$%^&*(){}=+[]".toUpperCase().split("");
-// console.log(text); // array od 50 elemenata
 
 startGame();
 
 function startGame() {
     
-    // moram prvo da izvucem dva elementa i da napravim array za igru od njih, pa onda 4...
     let gameIcons = text.slice(0, (level * start) / 2);
     
     let icons = gameIcons.concat(gameIcons);
@@ -95,11 +93,12 @@ function startGame() {
     allCards.forEach(card => card.addEventListener('click', flipCard));
     
     function flipCard() {
-        // console.log('radi');
-        
+        this.removeEventListener('click', flipCard);        
         flippedCards.push(this);
+        
         this.classList.add('flipped');
         if (flippedCards.length === 2) {
+            stopAllClicks();
             checkCards();
         }
     }
@@ -121,19 +120,21 @@ function startGame() {
         if (back1.innerHTML === back2.innerHTML) {
             counter ++;
             flippedCards.length = 0;
+            
             addAllClicks();
             if (counter === gameIcons.length) {
                 start = start + 2;
                 level = level + 2;
                 counter = 0;
                 setTimeout(() => {
-                    clean();
                     clearInterval(startTimer);
+                    clean();
                     alert('Uspešno ste završili igru. Prelazite na viši nivo.')
                     startGame();
                 }, 1000)
             }
         } else {
+            stopAllClicks();
             setTimeout(function(){ 
                 flippedCards[0].classList.remove('flipped');
                 flippedCards[1].classList.remove('flipped');
@@ -146,5 +147,7 @@ function startGame() {
     function clean() {
         container.remove();
         timerDiv.remove();
+        flippedCards.length = 0;
     }
 }
+
