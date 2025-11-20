@@ -150,7 +150,7 @@ body {
 }
 
 .timer-2 {
-    height: 20px;
+    height: 200px;
 }
 
 .line-2, .line-4, .line-6, .line-8, .line-10 {
@@ -161,17 +161,18 @@ body {
 }
 
 .timer-4 {
-	height: 350px;
+	height: 400px;
 }
 
 .timer-6 {
-	height: 500px;
+	height: 600px;
 }
 
 .timer-8 {
-	height: 700px;
+	height: 800px;
 }
 
 .timer-10 {
-	height: 800px;
+	height: 1000px;
 }
+
