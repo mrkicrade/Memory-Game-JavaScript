@@ -49,7 +49,7 @@ function startGame() {
 	let startTimer = setInterval(start1, time);
 
     function start1() {
-        if (height >= 100) {
+        if (height > 100) {
             clearInterval(startTimer);
             alert("Vreme je isteklo!!! Igra je zavrsena!!!");
             alert('Pokrenite novu igru');
@@ -123,11 +123,11 @@ function startGame() {
             
             addAllClicks();
             if (counter === gameIcons.length) {
+				clearInterval(startTimer);
                 start = start + 2;
                 level = level + 2;
                 counter = 0;
                 setTimeout(() => {
-                    clearInterval(startTimer);
                     clean();
                     alert('Uspešno ste završili igru. Prelazite na viši nivo.')
                     startGame();
@@ -150,4 +150,5 @@ function startGame() {
         flippedCards.length = 0;
     }
 }
+
 
